@@ -1,0 +1,48 @@
+div.slider {
+	width: 200px;
+	height: 8px;
+	background: #aaaaaa;
+	margin-bottom: 5px;
+	 margin-top: 7px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	position:relative;
+}
+div.slider div.knob, div.slider button.knob {
+	cursor:pointer;
+	border: 1px solid #aaaaaa;
+	margin: 0;
+	background: #efefef;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: -5px;
+	padding: 3px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+div.slider div.knob:hover, div.slider button.knob:hover {
+	background: #ffffff;
+}
+div.slider div.knob:focus, div.slider button.knob:focus {
+	outline:none;
+	background-color: #ffffff;
+	border: 2px dotted #cc0000;
+	margin: 0px -1px 0px -1px;
+}
+div#fontSize {
+	height: 50px;
+}
+div.advanced {
+	width: 400px;
+	margin: 5px 0;
+}
+div.advanced div.knob {
+	background: no-repeat center center;
+	cursor: pointer;
+}

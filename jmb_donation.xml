@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="content" method="upgrade">
+	<name>PLG_CONTENT_JBM_DONATION</name>
+	<author>Lex, AllDar</author>
+	<creationDate>10.02.2012</creationDate>
+	<copyright>(c) 2012 - 2014 NorrNext</copyright>
+	<license>GNU General Public License version 3 or later; see license.txt</license>
+	<authorEmail>support@norrnext.com</authorEmail>
+	<authorUrl>http://norrnext.com</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_CONTENT_JBM_DONATION_DESCRIPTION</description>
+	<files>
+		<filename plugin="jmb_donation">jmb_donation.php</filename>
+		<folder>layouts</folder>
+		<folder>language</folder>
+	</files>
+	<media destination="plg_jmb_donation" folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="wallet_number" type="text" 
+					default="41001599904355" 
+					label="PLG_CONTENT_JBM_DONATION_WALLET_NUMBER" 
+					description=""
+				/>
+				<field name="defsumm" type="text" 
+					default="50" 
+					label="PLG_CONTENT_JBM_DONATION_DEFSUMM" 
+					description="" 
+				/>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+		<server type="extension" priority="1" name="jmb_donation">http://joomlablog.ru/updates/jmb/plugins/jmb_donation.xml</server>
+	</updateservers>
+</extension>
