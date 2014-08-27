@@ -11,10 +11,10 @@ defined('_JEXEC') or die;
 /**
  * JMB donation content plugin base class.
  *
- * @package  JMB donation content plugin
+ * @package  Jmb_Donation
  * @since    1.0
  */
-class plgContentJmb_Donation extends JPlugin 
+class PlgContentJmb_Donation extends JPlugin
 {
 	/**
 	 * Token.
@@ -26,13 +26,13 @@ class plgContentJmb_Donation extends JPlugin
 	/**
 	 * Constructor.
 	 *
-	 * @param  object  $subject  The object to observe.
-	 * @param  array   $config   An array that holds the plugin configuration.
-	 *
+	 * @param   object  &$subject  The object to observe.
+	 * @param   array   $params    An array that holds the plugin configuration.
 	 */
-	public function __construct(&$subject, $params) 
+	public function __construct(&$subject, $params)
 	{
 		parent::__construct($subject, $params);
+
 		$this->loadLanguage();
 	}
 
@@ -40,13 +40,13 @@ class plgContentJmb_Donation extends JPlugin
 	 * Plugin that adds donation form to content.
 	 *
 	 * @param   string  $context     The context of the content being passed to the plugin.
-	 * @param   mixed   $article     An object with a "text" property.
-	 * @param   array   $params      Additional parameters.
+	 * @param   mixed   &$article    An object with a "text" property.
+	 * @param   array   &$params     Additional parameters.
 	 * @param   int     $limitstart  Optional page number. Unused. Defaults to zero.
 	 *
 	 * @return  boolean  True on success.
 	 */
-	public function onContentPrepare($context, &$article, &$params, $limitstart) 
+	public function onContentPrepare($context, &$article, &$params, $limitstart)
 	{
 		$this->token   = uniqid();
 		$article->text = $this->replaceYM($article->text);
@@ -69,16 +69,17 @@ class plgContentJmb_Donation extends JPlugin
 		$opt = array();
 
 		ob_start();
-		include_once(dirname(__FILE__) . '/layouts/form_ya.php');
+		include_once dirname(__FILE__) . '/layouts/form_ya.php';
 		$template = ob_get_contents();
 		ob_end_clean();
 
 		$vars = array('money_amount_default', 'wallet_number', );
 		$j = 0;
+
 		foreach ($money_amount[1] as $tags)
 		{
 			$replacement = '|' . str_ireplace(array('|', '/'), array('\|', '\/'), $tags) . '|Uis';
-			$opt = explode('|', $money_amount[2][$j]); 
+			$opt = explode('|', $money_amount[2][$j]);
 			$replacer = $this->replacerAsHTML($opt, $template, $vars);
 			$j++;
 		}
@@ -101,7 +102,7 @@ class plgContentJmb_Donation extends JPlugin
 
 		if (count($opt) > 1)
 		{
-			$opt = array($opt[1], $opt[0]);  
+			$opt = array($opt[1], $opt[0]);
 		}
 		elseif (count($opt) == 1 && !empty($opt[0]))
 		{
@@ -112,17 +113,19 @@ class plgContentJmb_Donation extends JPlugin
 			$opt = array($opt[1], $this->params->get('wallet_number', ''));
 		}
 		else
-		{ 
+		{
 			$opt = array($this->params->get('defsumm'), $this->params->get('wallet_number', ''));
 		}
 
 		for ($i = 0; $i < count($opt); $i++)
 		{
 			$opt[$i] = $this->validOptions($i, $opt[$i]);
-			if ($i == 0) 
+
+			if ($i == 0)
 			{
 				$this->sliderInit($this->token, $opt[$i]);
 			}
+
 			$template = str_replace(array("<:$vars[$i]:>", "<:unicid:>"), array($opt[$i], $this->token), $template);
 		}
 
@@ -141,21 +144,23 @@ class plgContentJmb_Donation extends JPlugin
 	{
 		$res = '';
 
-		switch ($i) 
+		switch ($i)
 		{
 			case 0:
-				$var = str_replace(array(' ', ','),array('', '.'), $var);
-				if ((float)$var) 
+				$var = str_replace(array(' ', ','), array('', '.'), $var);
+
+				if ((float) $var)
 				{
-					$res = round((float)$var, 2);
+					$res = round((float) $var, 2);
 				}
 				else
 				{
 					$res = 0;
 				}
 				break;
-			case 1: 
-				if (preg_match('/\s*[0-9]{14}\s*/', $var, $var1)) 
+
+			case 1:
+				if (preg_match('/\s*[0-9]{14}\s*/', $var, $var1))
 				{
 					$res = $var1[0];
 				}
