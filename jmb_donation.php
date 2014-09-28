@@ -106,15 +106,15 @@ class PlgContentJmb_Donation extends JPlugin
 		}
 		elseif (count($opt) == 1 && !empty($opt[0]))
 		{
-			$opt = array($this->params->get('defsumm'), $opt[0]);
+			$opt = array($this->params->get('def_amount', 50), $opt[0]);
 		}
 		elseif (count($opt) == 1 && !empty($opt[1]))
 		{
-			$opt = array($opt[1], $this->params->get('wallet_number', ''));
+			$opt = array($opt[1], $this->params->get('def_merchant', ''));
 		}
 		else
 		{
-			$opt = array($this->params->get('defsumm'), $this->params->get('wallet_number', ''));
+			$opt = array($this->params->get('def_amount', 50), $this->params->get('def_merchant', ''));
 		}
 
 		for ($i = 0; $i < count($opt); $i++)
