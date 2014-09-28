@@ -22,12 +22,21 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="wallet_number" type="text" 
+				<field name="provider" type="list"
+					default="paypal"
+					label="PLG_CONTENT_JBM_DONATION_PROVIDER_LABEL"
+					description="PLG_CONTENT_JBM_DONATION_PROVIDER_DESC">
+					<option value="paypal">PayPal</option>
+					<option value="yandex">Yandex</option>
+				</field>
+
+				<field name="wallet_number" type="text"
 					default="41001599904355" 
 					label="PLG_CONTENT_JBM_DONATION_WALLET_NUMBER" 
 					description=""
 				/>
-				<field name="defsumm" type="text" 
+
+				<field name="defsumm" type="text"
 					default="50" 
 					label="PLG_CONTENT_JBM_DONATION_DEFSUMM" 
 					description="" 
