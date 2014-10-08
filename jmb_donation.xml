@@ -36,7 +36,7 @@
 				/>
 
 				<field name="def_amount" type="text"
-					default="50" 
+					default="10"
 					label="PLG_CONTENT_JBM_DONATION_AMOUNT_LABEL"
 					description=""
 				/>

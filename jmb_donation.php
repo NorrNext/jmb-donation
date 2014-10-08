@@ -21,7 +21,7 @@ class PlgContentJmb_Donation extends JPlugin
 	 *
 	 * @var  string
 	 */
-	public $token;
+	private $token;
 
 	/**
 	 * Constructor.
@@ -39,19 +39,79 @@ class PlgContentJmb_Donation extends JPlugin
 	/**
 	 * Plugin that adds donation form to content.
 	 *
-	 * @param   string  $context     The context of the content being passed to the plugin.
-	 * @param   mixed   &$article    An object with a "text" property.
-	 * @param   array   &$params     Additional parameters.
-	 * @param   int     $limitstart  Optional page number. Unused. Defaults to zero.
+	 * @param   string  $context  The context of the content being passed to the plugin.
+	 * @param   mixed   &$row     An object with a "text" property.
+	 * @param   array   &$params  Additional parameters.
+	 * @param   int     $page     Optional page number. Unused. Defaults to zero.
 	 *
 	 * @return  boolean  True on success.
 	 */
-	public function onContentPrepare($context, &$article, &$params, $limitstart)
+	public function onContentPrepare($context, &$row, &$params, $page = 0)
 	{
-		$this->token   = uniqid();
-		$article->text = $this->replaceYM($article->text);
+		// Don't run this plugin when the content is being indexed
+		if ($context == 'com_finder.indexer')
+		{
+			return true;
+		}
+
+		// Simple performance check to determine whether bot should process further
+		if (strpos($row->text, 'jmb_donation') === false)
+		{
+			return true;
+		}
+
+		$this->token = uniqid();
+
+		try
+		{
+			$this->setupParams($row->text);
+		}
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+
+			return true;
+		}
+
+		$provider = $this->params->get('provider');
+
+		switch ($provider)
+		{
+			case 'yandex':
+				$row->text = $this->replaceYM($row->text);
+				break;
+
+			default:
+				$row->text = $this->replacePaypal($row->text);
+		}
 
 		return true;
+	}
+
+	/**
+	 * Method to return replaced content.
+	 *
+	 * @param   string  $content  The content being passed to the replacer.
+	 *
+	 * @return  string  Form template.
+	 */
+	private function replacePaypal($content)
+	{
+		// Expression to search for
+		$regex = '/{jmb_donation\s*(.*?)}/Uis';
+
+		$matches = array();
+		preg_match_all($regex, $content, $matches, PREG_SET_ORDER);
+
+		ob_start();
+		include_once dirname(__FILE__) . '/layouts/form_paypal.php';
+		//JLayoutHelper::render('form_paypal', $this->params, JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts');
+		$template = ob_get_contents();
+		ob_end_clean();
+
+		$this->sliderInit();
+
+		return preg_replace($regex, $template, $content);
 	}
 
 	/**
@@ -63,126 +123,118 @@ class PlgContentJmb_Donation extends JPlugin
 	 */
 	private function replaceYM($content)
 	{
-		preg_match_all('/.*(\{\s*jmb_donation\s*(\s*\S*.*\s*)\s*\}).*/Uis', $content, $money_amount);
-		$replacement = array();
-		$replacer = array();
-		$opt = array();
+		// Expression to search for
+		$regex = '/{jmb_donation\s*(.*?)}/Uis';
+
+		$matches = array();
+		preg_match_all($regex, $content, $matches, PREG_SET_ORDER);
 
 		ob_start();
 		include_once dirname(__FILE__) . '/layouts/form_ya.php';
+		//JLayoutHelper::render('form_paypal', $this->params, JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts');
 		$template = ob_get_contents();
 		ob_end_clean();
 
-		$vars = array('money_amount_default', 'wallet_number', );
-		$j = 0;
+		$this->sliderInit();
 
-		foreach ($money_amount[1] as $tags)
-		{
-			$replacement = '|' . str_ireplace(array('|', '/'), array('\|', '\/'), $tags) . '|Uis';
-			$opt = explode('|', $money_amount[2][$j]);
-			$replacer = $this->replacerAsHTML($opt, $template, $vars);
-			$j++;
-		}
-
-		return preg_replace($replacement, $replacer, $content);
+		return preg_replace($regex, $template, $content);
 	}
 
 	/**
-	 * Method to return form template.
+	 * Method to setup plugin's parameters
 	 *
-	 * @param   array  $opt       Plugin options.
-	 * @param   mixed  $template  Form template.
-	 * @param   array  $vars      Options names.
+	 * @param   string  $content  The content
 	 *
-	 * @return  mixed  Form template.
+	 * @return  void
+	 *
+	 * @throws  Exception
+	 *
+	 * @since   1.0
 	 */
-	private function replacerAsHTML($opt, $template, $vars)
+	private function setupParams($content)
 	{
-		$opt = array_diff($opt, array(' '));
+		// Expression to search for
+		$regex = '/{jmb_donation\s*(.*?)}/i';
 
-		if (count($opt) > 1)
-		{
-			$opt = array($opt[1], $opt[0]);
-		}
-		elseif (count($opt) == 1 && !empty($opt[0]))
-		{
-			$opt = array($this->params->get('def_amount', 50), $opt[0]);
-		}
-		elseif (count($opt) == 1 && !empty($opt[1]))
-		{
-			$opt = array($opt[1], $this->params->get('def_merchant', ''));
-		}
-		else
-		{
-			$opt = array($this->params->get('def_amount', 50), $this->params->get('def_merchant', ''));
-		}
+		$matches = array();
+		preg_match_all($regex, $content, $matches, PREG_SET_ORDER);
 
-		for ($i = 0; $i < count($opt); $i++)
+		foreach ($matches as $match)
 		{
-			$opt[$i] = $this->validOptions($i, $opt[$i]);
+			// $match[0] is full pattern match, $match[1] are the params.
+			$parts = array_filter(explode("|", $match[1]));
 
-			if ($i == 0)
+			// Incorrect number of params
+			if (sizeof($parts) < 3 && sizeof($parts) != 0)
 			{
-				$this->sliderInit($this->token, $opt[$i]);
+				throw new Exception(JText::_('PLG_CONTENT_JBM_DONATION_PARAMS_MISSING'));
 			}
 
-			$template = str_replace(array("<:$vars[$i]:>", "<:unicid:>"), array($opt[$i], $this->token), $template);
+			// There are no params, set up defaults
+			if (sizeof($parts) == 0)
+			{
+				$this->params->set('provider', $this->params->get('def_provider', 'paypal'));
+				$this->params->set('merchant', $this->params->get('def_merchant', ''));
+				$this->params->set('amount', $this->params->get('def_amount', 10));
+			}
+
+			// Set up provider param
+			$provider = $this->params->get('def_provider', 'paypal');
+
+			if (!empty($parts[0]))
+			{
+				switch (trim($parts[0]))
+				{
+					case 'yandex':
+						$provider = 'yandex';
+						break;
+
+					case 'paypal':
+						$provider = 'paypal';
+						break;
+				}
+			}
+
+			$this->params->set('provider', $provider);
+
+			// Set up merchant param
+			$merchant = $this->params->get('def_merchant', '');
+
+			if (!empty($parts[1]))
+			{
+				$merchant = $parts[1];
+			}
+
+			if ($merchant == '')
+			{
+				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JBM_DONATION_MERCHANT_IS_NOT_VALID'));
+			}
+
+			$this->params->set('merchant', $merchant);
+
+			// Set up amount param
+			$amount = $this->params->get('def_amount', 10);
+
+			if (!empty($parts[2]))
+			{
+				$amount = $parts[2];
+			}
+
+			if ($amount == 0)
+			{
+				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JBM_DONATION_AMOUNT_IS_NOT_VALID'));
+			}
+
+			$this->params->set('amount', $amount);
 		}
-
-		return $template;
-	}
-
-	/**
-	 * Method to validate plugin options.
-	 *
-	 * @param   string  $i    Plugin option order number.
-	 * @param   mixed   $var  Plugin option.
-	 *
-	 * @return  mixed  Validation result.
-	 */
-	private function validOptions($i, $var)
-	{
-		$res = '';
-
-		switch ($i)
-		{
-			case 0:
-				$var = str_replace(array(' ', ','), array('', '.'), $var);
-
-				if ((float) $var)
-				{
-					$res = round((float) $var, 2);
-				}
-				else
-				{
-					$res = 0;
-				}
-				break;
-
-			case 1:
-				if (preg_match('/\s*[0-9]{14}\s*/', $var, $var1))
-				{
-					$res = $var1[0];
-				}
-				else
-				{
-					$res = JText::_('PLG_CONTENT_JBM_DONATION_WALLET_NUMBER_IS_NOT_VALID');
-				}
-				break;
-		}
-
-		return $res;
 	}
 
 	/**
 	 * Method to add slider.
 	 *
-	 * @param   string  $token  Token.
-	 * @param   string  $sum    Donation amount.
-	 *
 	 * @return  void
 	 */
-	private function sliderInit($token, $sum)
+	private function sliderInit()
 	{
 		JHtml::_('behavior.framework', 'more');
 
@@ -192,28 +244,28 @@ class PlgContentJmb_Donation extends JPlugin
 
 		$js = "
 		window.addEvent('domready', function(){
-			var el = $('elslider" . $token . "');
-			var elsmile = $('smile" . $token . "');
-			var inp = $('CompanySum" . $token . "');
-			var sum = ('" . $sum . "')*100;
-			
-			var slider" . $token . " = new Slider(el, el.getElement('.knob'), {
+			var el = $('elslider" . $this->token . "');
+			var elsmile = $('smile" . $this->token . "');
+			var inp = $('amount" . $this->token . "');
+			var sum = ('" . $this->params->get('amount') . "')*1;
+
+			var slider" . $this->token . " = new Slider(el, el.getElement('.knob'), {
 				steps: sum*2,
 				initialStep: sum,
 				range: [sum/10, sum*2],
 				onChange: function(val){
-					inp.set('value', val/100);
+					inp.set('value', val/1);
 					var pr = (val/(sum*2))*100;
-					var sml = new Smile ($('smile" . $token . "'), pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
+					var sml = new Smile ($('smile" . $this->token . "'), pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
 				}
 			});
 
 			inp.addEvent('keyup', function(event) {
 				event = new Event(event).stop();
-				var sm = inp.get('value')*100;
+				var sm = inp.get('value')*1;
 				var cpr = (sm/(sum*2))*100;
 				if (cpr > 100)	cpr = 100;
-				new Smile ($('smile" . $token . "'), cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
+				new Smile ($('smile" . $this->token . "'), cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
 			});
 		});
 		";
