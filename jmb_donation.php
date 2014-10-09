@@ -109,7 +109,7 @@ class PlgContentJmb_Donation extends JPlugin
 		$template = ob_get_contents();
 		ob_end_clean();
 
-		$this->sliderInit();
+		$this->initSlider();
 
 		return preg_replace($regex, $template, $content);
 	}
@@ -135,7 +135,7 @@ class PlgContentJmb_Donation extends JPlugin
 		$template = ob_get_contents();
 		ob_end_clean();
 
-		$this->sliderInit();
+		$this->initSlider();
 
 		return preg_replace($regex, $template, $content);
 	}
@@ -234,7 +234,7 @@ class PlgContentJmb_Donation extends JPlugin
 	 *
 	 * @return  void
 	 */
-	private function sliderInit()
+	private function initSlider()
 	{
 		JHtml::_('behavior.framework', 'more');
 
