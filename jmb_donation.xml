@@ -11,6 +11,7 @@
 	<description>PLG_CONTENT_JMB_DONATION_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="jmb_donation">jmb_donation.php</filename>
+		<folder>fields</folder>
 		<folder>layouts</folder>
 		<folder>language</folder>
 	</files>
