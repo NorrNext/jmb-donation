@@ -38,12 +38,21 @@
 				<field name="def_amount" type="text"
 					default="10"
 					label="PLG_CONTENT_JBM_DONATION_AMOUNT_LABEL"
-					description=""
 				/>
+
+				<field
+						name="show_backlink"
+						type="list"
+						default="1"
+						label="PLG_CONTENT_JBM_DONATION_FIELD_SHOW_BACKLINK_LABEL"
+						description="PLG_CONTENT_JBM_DONATION_FIELD_SHOW_BACKLINK_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="jmb_donation">http://joomlablog.ru/updates/jmb/plugins/jmb_donation.xml</server>
+		<server type="extension" priority="1" name="jmb_donation">http://norrnext.com/updates/joomla/plugins/jmb_donation.xml</server>
 	</updateservers>
 </extension>
