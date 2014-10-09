@@ -27,7 +27,7 @@ if (false !== $pos)
 
 <?php if ($displayData->params->get('show_backlink', 1)) : ?>
 	<div style="text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 7pt; text-decoration: none">
-		<?php echo JText::_('PLG_CONTENT_JBM_DONATION_BACKLINK'); ?>
+		<?php echo JText::_('PLG_CONTENT_JMB_DONATION_BACKLINK'); ?>
 	</div>
 <?php endif; ?>
 

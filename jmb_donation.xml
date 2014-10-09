@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.2" type="plugin" group="content" method="upgrade">
-	<name>PLG_CONTENT_JBM_DONATION</name>
-	<author>Lex, AllDar</author>
+	<name>PLG_CONTENT_JMB_DONATION</name>
+	<author>Lex, AllDar and b2z</author>
 	<creationDate>10.02.2012</creationDate>
 	<copyright>(c) 2012 - 2014 NorrNext</copyright>
 	<license>GNU General Public License version 3 or later; see license.txt</license>
 	<authorEmail>support@norrnext.com</authorEmail>
 	<authorUrl>http://norrnext.com</authorUrl>
 	<version>1.0.0</version>
-	<description>PLG_CONTENT_JBM_DONATION_DESCRIPTION</description>
+	<description>PLG_CONTENT_JMB_DONATION_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="jmb_donation">jmb_donation.php</filename>
 		<folder>layouts</folder>
@@ -24,31 +24,41 @@
 			<fieldset name="basic">
 				<field name="def_provider" type="list"
 					default="paypal"
-					label="PLG_CONTENT_JBM_DONATION_PROVIDER_LABEL"
-					description="PLG_CONTENT_JBM_DONATION_PROVIDER_DESC">
+					label="PLG_CONTENT_JMB_DONATION_PROVIDER_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_PROVIDER_DESC">
 					<option value="paypal">PayPal</option>
 					<option value="yandex">Yandex</option>
 				</field>
 
 				<field name="def_merchant" type="text"
-					label="PLG_CONTENT_JBM_DONATION_MERCHANT_LABEL"
-					description="PLG_CONTENT_JBM_DONATION_MERCHANT_DESC"
+					label="PLG_CONTENT_JMB_DONATION_MERCHANT_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_MERCHANT_DESC"
 				/>
 
 				<field name="def_amount" type="text"
 					default="10"
-					label="PLG_CONTENT_JBM_DONATION_AMOUNT_LABEL"
+					label="PLG_CONTENT_JMB_DONATION_AMOUNT_LABEL"
 				/>
 
 				<field
 						name="show_backlink"
 						type="list"
 						default="1"
-						label="PLG_CONTENT_JBM_DONATION_FIELD_SHOW_BACKLINK_LABEL"
-						description="PLG_CONTENT_JBM_DONATION_FIELD_SHOW_BACKLINK_DESC">
+						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_LABEL"
+						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+			</fieldset>
+			<fieldset name="jmb_donation_description"
+					  addfieldpath="/plugins/content/jmb_donation/fields">
+
+				<field
+						name="description"
+						type="jmb.description"
+						label=""
+						/>
+
 			</fieldset>
 		</fields>
 	</config>
