@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Jmb_Donation
- * @author     Lex, AllDar <support@norrnext.com>
+ * @author     Lex, AllDar and b2z <support@norrnext.com>
  * @copyright  Copyright (C) 2012 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 class PlgContentJmb_Donation extends JPlugin
 {
 	/**
-	 * Token.
+	 * Token
 	 *
 	 * @var  string
 	 */
@@ -45,6 +45,8 @@ class PlgContentJmb_Donation extends JPlugin
 	 * @param   int     $page     Optional page number. Unused. Defaults to zero.
 	 *
 	 * @return  boolean  True on success.
+	 *
+	 * @since   1.0
 	 */
 	public function onContentPrepare($context, &$row, &$params, $page = 0)
 	{
@@ -73,71 +75,35 @@ class PlgContentJmb_Donation extends JPlugin
 			return true;
 		}
 
-		$provider = $this->params->get('provider');
-
-		switch ($provider)
-		{
-			case 'yandex':
-				$row->text = $this->replaceYM($row->text);
-				break;
-
-			default:
-				$row->text = $this->replacePaypal($row->text);
-		}
+		$row->text = $this->makeReplacement($row->text);
 
 		return true;
 	}
 
 	/**
-	 * Method to return replaced content.
+	 * Method to return replaced content
 	 *
-	 * @param   string  $content  The content being passed to the replacer.
+	 * @param   string  $content  The content being passed to the replacer
 	 *
-	 * @return  string  Form template.
+	 * @return  string  HTML layout
+	 *
+	 * @since   1.0
 	 */
-	private function replacePaypal($content)
+	private function makeReplacement($content)
 	{
-		// Expression to search for
-		$regex = '/{jmb_donation\s*(.*?)}/Uis';
+		$displayData = new stdClass;
+		$displayData->token     = $this->token;
+		$displayData->params    = $this->params;
 
-		$matches = array();
-		preg_match_all($regex, $content, $matches, PREG_SET_ORDER);
-
-		ob_start();
-		include_once dirname(__FILE__) . '/layouts/form_paypal.php';
-		//JLayoutHelper::render('form_paypal', $this->params, JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts');
-		$template = ob_get_contents();
-		ob_end_clean();
+		JLayoutHelper::$defaultBasePath = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
+		$renderedLayout = JLayoutHelper::render('base', $displayData);
 
 		$this->initSlider();
 
-		return preg_replace($regex, $template, $content);
-	}
-
-	/**
-	 * Method to return replaced content.
-	 *
-	 * @param   string  $content  The content being passed to the replacer.
-	 *
-	 * @return  mixed  Form template.
-	 */
-	private function replaceYM($content)
-	{
 		// Expression to search for
 		$regex = '/{jmb_donation\s*(.*?)}/Uis';
 
-		$matches = array();
-		preg_match_all($regex, $content, $matches, PREG_SET_ORDER);
-
-		ob_start();
-		include_once dirname(__FILE__) . '/layouts/form_ya.php';
-		//JLayoutHelper::render('form_paypal', $this->params, JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts');
-		$template = ob_get_contents();
-		ob_end_clean();
-
-		$this->initSlider();
-
-		return preg_replace($regex, $template, $content);
+		return preg_replace($regex, $renderedLayout, $content);
 	}
 
 	/**
@@ -233,6 +199,8 @@ class PlgContentJmb_Donation extends JPlugin
 	 * Method to add slider.
 	 *
 	 * @return  void
+	 *
+	 * @since   1.0
 	 */
 	private function initSlider()
 	{
