@@ -14,9 +14,11 @@ defined('_JEXEC') or die;
 		<input id="merchant<?php echo $displayData->token; ?>" type="hidden" name="business" value="">
 		<input class="jmb-input input-small" type="text" id="amount<?php echo $displayData->token; ?>" name="amount" value="<?php echo $displayData->params->get('amount'); ?>" size="4" style="margin-right: 5px;" />
 		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<a class="jmb-logo" href="https://www.paypal.com/" target="_blank">
-			<img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png" width="124" height="33" border="0" alt="PayPal logo" />
-		</a>
+		<?php if ($displayData->params->get('show_logo', 1)) : ?>
+			<a class="jmb-logo" href="https://www.paypal.com/" target="_blank">
+				<img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png" width="124" height="33" border="0" alt="PayPal logo" />
+			</a>
+		<?php endif; ?>
 		<?php if ($displayData->params->get('show_effects', 1)) : ?>
 			<?php echo JLayoutHelper::render('effects', $displayData); ?>
 		<?php endif; ?>

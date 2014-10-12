@@ -13,12 +13,14 @@ defined('_JEXEC') or die;
 		<input id="merchant<?php echo $displayData->token; ?>" type="hidden" name="to" value="" />
 		<input class="jmb-input input-small" type="text" id="amount<?php echo $displayData->token; ?>" name="CompanySum" value="<?php echo $displayData->params->get('amount'); ?>" size="4" />
 		<button class="btn" type="submit"><?php echo JText::_('PLG_CONTENT_JMB_DONATION_SUBMIT'); ?></button>
-		<a class="jmb-logo" href="http://money.yandex.ru/" target="_blank">
-			<img src="http://img.yandex.net/i/ym-logo.gif" width="90" height="39" border="0" alt="Яндекс.Деньги лого" />
-		</a>
+		<?php if ($displayData->params->get('show_logo', 1)) : ?>
+			<a class="jmb-logo" href="http://money.yandex.ru/" target="_blank">
+				<img src="http://img.yandex.net/i/ym-logo.gif" width="90" height="39" border="0" alt="Яндекс.Деньги лого" />
+			</a>
+		<?php endif; ?>
 		<?php if ($displayData->params->get('show_effects', 1)) : ?>
-				<?php echo JLayoutHelper::render('effects', $displayData); ?>
-			<?php endif; ?>
+			<?php echo JLayoutHelper::render('effects', $displayData); ?>
+		<?php endif; ?>
 		<div class="clr"></div>
 	</form>
 </div>

@@ -44,6 +44,16 @@
 
 			</fieldset>
 			<fieldset name="advanced">
+				<field
+						name="show_logo"
+						type="radio"
+						class="btn-group btn-group-yesno"
+						default="1"
+						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_LABEL"
+						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
 
 				<field
 						name="show_effects"
