@@ -22,7 +22,7 @@ if (false !== $pos)
 <?php endif; ?>
 
 <?php if ($displayData->params->get('provider') == 'yandex') : ?>
-	<?php echo JLayoutHelper::render('form_ya', $displayData); ?>
+	<?php echo JLayoutHelper::render('form_yandex', $displayData); ?>
 <?php endif; ?>
 
 <?php if ($displayData->params->get('show_backlink', 1)) : ?>
@@ -31,7 +31,8 @@ if (false !== $pos)
 	</div>
 <?php endif; ?>
 
-<?php if (false !== $pos) : ?>
+<?php if (false !== $pos) :
+	// Protect an email from spam bots ?>
 	<script>
 		<!--
 		var a = '<?php echo $mail[0]; ?>';

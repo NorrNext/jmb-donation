@@ -98,7 +98,10 @@ class PlgContentJmb_Donation extends JPlugin
 		JLayoutHelper::$defaultBasePath = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
 		$renderedLayout = JLayoutHelper::render('base', $displayData);
 
-		$this->initSlider();
+		if ($this->params->get('show_effects', 1))
+		{
+			$this->initEffects();
+		}
 
 		// Expression to search for
 		$regex = '/{jmb_donation\s*(.*?)}/Uis';
@@ -196,13 +199,13 @@ class PlgContentJmb_Donation extends JPlugin
 	}
 
 	/**
-	 * Method to add slider.
+	 * Method to add effects: slider and smile
 	 *
 	 * @return  void
 	 *
 	 * @since   1.0
 	 */
-	private function initSlider()
+	private function initEffects()
 	{
 		JHtml::_('behavior.framework', 'more');
 
@@ -212,28 +215,38 @@ class PlgContentJmb_Donation extends JPlugin
 
 		$js = "
 		window.addEvent('domready', function(){
+			var showSmile = " . $this->params->get('show_smile', 1) . ";
 			var el = $('elslider" . $this->token . "');
-			var elsmile = $('smile" . $this->token . "');
 			var inp = $('amount" . $this->token . "');
-			var sum = ('" . $this->params->get('amount') . "')*1;
+			var sum = ('" . $this->params->get('amount') . "');
+			if (showSmile) {
+				var elsmile = $('smile" . $this->token . "');
+			}
 
 			var slider" . $this->token . " = new Slider(el, el.getElement('.knob'), {
 				steps: sum*2,
 				initialStep: sum,
 				range: [sum/10, sum*2],
 				onChange: function(val){
-					inp.set('value', val/1);
+					inp.set('value', val);
 					var pr = (val/(sum*2))*100;
-					var sml = new Smile ($('smile" . $this->token . "'), pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
+					if (showSmile) {
+						var sml = new Smile(
+							$('smile" . $this->token . "'), pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
+						);
+					}
 				}
 			});
 
 			inp.addEvent('keyup', function(event) {
-				event = new Event(event).stop();
-				var sm = inp.get('value')*1;
+				event.stop();
+				var sm = inp.get('value');
 				var cpr = (sm/(sum*2))*100;
-				if (cpr > 100)	cpr = 100;
-				new Smile ($('smile" . $this->token . "'), cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color'));
+				if (showSmile) {
+					new Smile(
+						$('smile" . $this->token . "'), cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
+					);
+				}
 			});
 		});
 		";
