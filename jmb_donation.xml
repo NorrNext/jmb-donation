@@ -25,31 +25,80 @@
 			<fieldset name="basic">
 				<field name="def_provider" type="list"
 					default="paypal"
-					label="PLG_CONTENT_JMB_DONATION_PROVIDER_LABEL"
-					description="PLG_CONTENT_JMB_DONATION_PROVIDER_DESC">
+					label="PLG_CONTENT_JMB_DONATION_FIELD_PROVIDER_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_PROVIDER_DESC">
 					<option value="paypal">PayPal</option>
 					<option value="yandex">Yandex</option>
 				</field>
 
 				<field name="def_merchant" type="text"
-					label="PLG_CONTENT_JMB_DONATION_MERCHANT_LABEL"
-					description="PLG_CONTENT_JMB_DONATION_MERCHANT_DESC"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_MERCHANT_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_MERCHANT_DESC"
 				/>
 
 				<field name="def_amount" type="text"
 					default="10"
-					label="PLG_CONTENT_JMB_DONATION_AMOUNT_LABEL"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_LABEL"
+				/>
+
+			</fieldset>
+			<fieldset name="advanced">
+
+				<field
+						name="show_effects"
+						type="radio"
+						class="btn-group btn-group-yesno"
+						default="1"
+						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_LABEL"
+						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="show_smile"
+						type="radio"
+						class="btn-group btn-group-yesno"
+						default="1"
+						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_LABEL"
+						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="smile_width" type="text"
+					default="75"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_DESC"
+				/>
+
+				<field name="smile_height" type="text"
+					default="75"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_DESC"
+				/>
+
+				<field name="smile_colour" type="color"
+					default="#CC6600"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_COLOUR_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_COLOUR_DESC"
 				/>
 
 				<field
 						name="show_backlink"
-						type="list"
+						type="radio"
+						class="btn-group btn-group-yesno"
 						default="1"
 						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_LABEL"
 						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_DESC">
-					<option value="0">JNO</option>
 					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
+
 			</fieldset>
 			<fieldset name="jmb_donation_description"
 					  addfieldpath="/plugins/content/jmb_donation/fields">
