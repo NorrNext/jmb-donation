@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Jmb_Donation
- * @author     Lex, AllDar and b2z <support@norrnext.com>
+ * @author     Lex, AllDar and Dmitry Rekun <support@norrnext.com>
  * @copyright  Copyright (C) 2012 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
