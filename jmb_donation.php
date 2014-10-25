@@ -171,7 +171,7 @@ class PlgContentJmb_Donation extends JPlugin
 
 			if (!empty($parts[1]))
 			{
-				$merchant = $parts[1];
+				$merchant = trim($parts[1]);
 			}
 
 			if ($merchant == '')
@@ -186,7 +186,7 @@ class PlgContentJmb_Donation extends JPlugin
 
 			if (!empty($parts[2]))
 			{
-				$amount = $parts[2];
+				$amount = trim($parts[2]);
 			}
 
 			if ($amount == 0)
