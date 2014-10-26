@@ -123,6 +123,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="jmb_donation">http://norrnext.com/updates/joomla/plugins/jmb_donation.xml</server>
+		<server type="extension" priority="1" name="jmb_donation">http://norrnext.com/updates/joomla/plugins/jmb_donation_update.xml</server>
 	</updateservers>
 </extension>
