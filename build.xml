@@ -14,7 +14,7 @@
 		<echo msg="Deleting old development build." />
 		<delete quiet="yes" includeemptydirs="true">
 			<fileset dir="releases">
-				<include name="pkg_${extension}_dev.zip" />
+				<include name="plg_${extension}_dev.zip" />
 			</fileset>
 		</delete>
 
