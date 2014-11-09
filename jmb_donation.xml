@@ -41,6 +41,13 @@
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_LABEL"
 				/>
+				
+				<field name="def_currency" type="text"
+					default="EUR"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_DESC"
+				/>
 
 			</fieldset>
 			<fieldset name="advanced">

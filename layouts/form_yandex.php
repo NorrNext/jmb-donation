@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div id="jmb-yandex" class="jmb-donation-form">
+<div class="jmb-donation-form-yandex">
 	<form class="form-inline" style="margin-bottom: 0" action="https://money.yandex.ru/charity.xml" method="post">
 		<input id="merchant<?php echo $displayData->token; ?>" type="hidden" name="to" value="" />
 		<input class="jmb-input input-small" type="text" id="amount<?php echo $displayData->token; ?>" name="CompanySum" value="<?php echo $displayData->params->get('amount'); ?>" size="4" />
