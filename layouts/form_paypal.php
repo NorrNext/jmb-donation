@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div id="jmb-paypal" class="jmb-donation-form">
+<div class="jmb-donation-form-paypal">
 	<form class="form-inline" style="margin-bottom: 0" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 		<input type="hidden" name="cmd" value="_xclick">
 		<input id="merchant<?php echo $displayData->token; ?>" type="hidden" name="business" value="">
@@ -23,5 +23,6 @@ defined('_JEXEC') or die;
 			<?php echo JLayoutHelper::render('effects', $displayData); ?>
 		<?php endif; ?>
 		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		<input type="hidden" name="currency_code" value="<?php echo $displayData->params->get('currency', 'EUR'); ?>">
 	</form>
 </div>

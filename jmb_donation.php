@@ -136,7 +136,7 @@ class PlgContentJmb_Donation extends JPlugin
 			// Incorrect number of params
 			if (sizeof($parts) < 3 && sizeof($parts) != 0)
 			{
-				throw new Exception(JText::_('PLG_CONTENT_JBM_DONATION_PARAMS_MISSING'));
+				throw new Exception(JText::_('PLG_CONTENT_JMB_DONATION_PARAMS_MISSING'));
 			}
 
 			// There are no params, set up defaults
@@ -145,6 +145,7 @@ class PlgContentJmb_Donation extends JPlugin
 				$this->params->set('provider', $this->params->get('def_provider', 'paypal'));
 				$this->params->set('merchant', $this->params->get('def_merchant', ''));
 				$this->params->set('amount', $this->params->get('def_amount', 10));
+				$this->params->set('amount', $this->params->get('currency', 'EUR'));
 			}
 
 			// Set up provider param
@@ -176,7 +177,7 @@ class PlgContentJmb_Donation extends JPlugin
 
 			if ($merchant == '')
 			{
-				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JBM_DONATION_MERCHANT_IS_NOT_VALID'));
+				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JMB_DONATION_MERCHANT_IS_NOT_VALID'));
 			}
 
 			$this->params->set('merchant', $merchant);
@@ -191,10 +192,20 @@ class PlgContentJmb_Donation extends JPlugin
 
 			if ($amount == 0)
 			{
-				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JBM_DONATION_AMOUNT_IS_NOT_VALID'));
+				throw new UnexpectedValueException(JText::_('PLG_CONTENT_JMB_DONATION_AMOUNT_IS_NOT_VALID'));
 			}
 
 			$this->params->set('amount', $amount);
+
+			// Set up currency param (it is optional)
+			$currency = $this->params->get('def_currency', 'EUR');
+
+			if (!empty($parts[3]))
+			{
+				$currency = trim($parts[3]);
+			}
+
+			$this->params->set('currency', $currency);
 		}
 	}
 
