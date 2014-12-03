@@ -48,7 +48,13 @@
 					label="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_DESC"
 				/>
-
+				
+				<field name="donation_text" type="textarea"
+					default=""
+					label="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_TEXT_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_TEXT_DESC"
+				/>
+				
 			</fieldset>
 			<fieldset name="advanced">
 				<field
@@ -72,7 +78,9 @@
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
-
+				
+				<field name="show_image" type="media" directory="stories" />
+				
 				<field
 						name="show_smile"
 						type="radio"
@@ -83,23 +91,23 @@
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
-
+				
 				<field name="smile_width" type="text"
-					default="75"
+					default="100"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_DESC"
 				/>
 
 				<field name="smile_height" type="text"
-					default="75"
+					default="100"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_DESC"
 				/>
 
 				<field name="smile_colour" type="color"
-					default="#CC6600"
+					default="#75b732"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_COLOUR_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_COLOUR_DESC"

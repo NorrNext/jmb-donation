@@ -31,6 +31,7 @@ class JmbFormFieldDescription extends JFormField
 	protected function getInput()
 	{
 		$html = '<div class="row-fluid">';
+		$html .= '<img class="pull-left img-polaroid" style="margin-right:10px;width:125px;" src="'. JURI::root() .'/media/plg_jmb_donation/images/jmb-donation.png" />';
 		$html .= JText::_('PLG_CONTENT_JMB_DONATION_DESCRIPTION');
 		$html .= '</div>';
 		$html .= '<div class="row-fluid" style="margin-top: 20px">';
