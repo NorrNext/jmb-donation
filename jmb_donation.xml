@@ -79,7 +79,10 @@
 					<option value="0">JNO</option>
 				</field>
 				
-				<field name="show_image" type="media" directory="stories" />
+				<field name="show_image" type="media" directory="stories"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_IMAGE"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_IMAGE_DESC"
+					/>
 				
 				<field
 						name="show_smile"
