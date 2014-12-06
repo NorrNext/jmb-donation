@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<form class="jmb-donation-form-yandex form-inline" action="https://money.yandex.ru/charity.xml" method="post">
+<form class="jmb-donation-form-yandex uk-form form-inline" action="https://money.yandex.ru/charity.xml" method="post">
 	<?php if ($displayData->params->get('show_effects', 1)) : ?>
 		<?php echo JLayoutHelper::render('effects', $displayData); ?>
 	<?php endif; ?>
