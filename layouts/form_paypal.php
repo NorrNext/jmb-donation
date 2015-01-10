@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Jmb_Donation
- * @author     Dmitry Rekun <support@norrnext.com>
+ * @author     Dmitry Rekun, Artem Valchuk <support@norrnext.com>
  * @copyright  Copyright (C) 2012 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 		<a class="jmb-donation-logo" href="https://www.paypal.com/" target="_blank">
 			<img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png" width="124" height="33" border="0" alt="PayPal logo" />
 		</a>
-	<?php endif; ?>	
+	<?php endif; ?>
 	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 	<input type="hidden" name="currency_code" value="<?php echo $displayData->params->get('currency', 'EUR'); ?>">
 </form>

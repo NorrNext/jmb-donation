@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Jmb_Donation
- * @author     Dmitry Rekun <support@norrnext.com>
+ * @author     Dmitry Rekun, Artem Valchuk <support@norrnext.com>
  * @copyright  Copyright (C) 2012 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
@@ -25,8 +25,8 @@ if (false !== $pos)
 		<canvas
 			id="smile<?php echo $displayData->token; ?>"
 			class="jmb-donation-smile"
-			width="<?php echo $displayData->params->get('smile_width', 75); ?>"
-			height="<?php echo $displayData->params->get('smile_width', 75); ?>"
+			width="<?php echo $displayData->params->get('smile_width', 100); ?>"
+			height="<?php echo $displayData->params->get('smile_width', 100); ?>"
 			color="<?php echo $displayData->params->get('smile_colour', '#CC6600'); ?>"
 			rel="2">
 		</canvas>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Jmb_Donation
- * @author     Lex, AllDar <support@norrnext.com>
+ * @author     Dmitry Rekun, Artem Valchuk, Lex, AllDar <support@norrnext.com>
  * @copyright  Copyright (C) 2012 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
@@ -27,5 +27,4 @@ defined('_JEXEC') or die;
 			<img src="http://img.yandex.net/i/ym-logo.gif" width="90" height="39" border="0" alt="Яндекс.Деньги лого" />
 		</a>
 	<?php endif; ?>
-	<div class="clr"></div>
 </form>
