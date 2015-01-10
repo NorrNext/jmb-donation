@@ -1,15 +1,16 @@
-div.slider {
+.jmb-donation .jmb-donation-slider {
 	width: 200px;
+	max-width: 100%;
 	height: 8px;
 	background: #aaaaaa;
-	margin-bottom: 5px;
-	margin-top: 15px;
+	margin-right: 15px;
 	-moz-border-radius: 4px 4px 4px 4px;
 	-webkit-border-radius: 4px 4px 4px 4px;
 	border-radius: 4px 4px 4px 4px;
 	position:relative;
 }
-div.slider div.knob, div.slider button.knob {
+
+.jmb-donation-slider div.knob, .jmb-donation-slider button.knob {
 	cursor:pointer;
 	border: 1px solid #aaaaaa;
 	margin: 0;
@@ -26,11 +27,11 @@ div.slider div.knob, div.slider button.knob {
 	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-div.slider div.knob:hover, div.slider button.knob:hover {
+.jmb-donation-slider div.knob:hover, .jmb-donation-slider button.knob:hover {
 	background: #ffffff;
 }
-div.slider div.knob:focus, div.slider button.knob:focus {
-	outline:none;
+.jmb-donation-slider div.knob:focus, .jmb-donation-slider button.knob:focus {
+
 	background-color: #ffffff;
 	border: 2px dotted #cc0000;
 	margin: 0px -1px 0px -1px;

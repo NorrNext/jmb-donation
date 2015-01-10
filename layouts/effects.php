@@ -8,16 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div id="elslider<?php echo $displayData->token; ?>" class="slider jmb-input">
-	<div class="knob jmb-input"></div>
+<div id="elslider<?php echo $displayData->token; ?>" class="jmb-donation-slider">
+	<div class="knob jmb-donation-input"></div>
 </div>
-<?php if ($displayData->params->get('show_smile', 1)) : ?>
-	<canvas
-		id="smile<?php echo $displayData->token; ?>"
-		class="jmb-smile"
-		width="<?php echo $displayData->params->get('smile_width', 75); ?>"
-		height="<?php echo $displayData->params->get('smile_width', 75); ?>"
-		color="<?php echo $displayData->params->get('smile_colour', '#CC6600'); ?>"
-		rel="2">
-	</canvas>
-<?php endif; ?>
+
