@@ -29,6 +29,7 @@
 				<include name="layouts/**" />
 				<include name="media/**" />
 				<include name="license.*" />
+				<include name="install.php" />
 				<include name="${extension}.*" />
 			</fileset>
 		</zip>
@@ -44,6 +45,7 @@
 				<include name="layouts/**" />
 				<include name="media/**" />
 				<include name="license.*" />
+				<include name="install.php" />
 				<include name="${extension}.*" />
 			</fileset>
 		</zip>

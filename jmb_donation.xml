@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.2" type="plugin" group="content" method="upgrade">
-	<name>PLG_CONTENT_JMB_DONATION</name>
-	<author>Lex, AllDar and Dmitry Rekun</author>
+	<name>plg_content_jmb_donation</name>
+	<author>Lex, AllDar, D.Rekun and A.Valchuk</author>
 	<creationDate>10.02.2012</creationDate>
 	<copyright>(c) 2012 - 2014 NorrNext</copyright>
 	<license>GNU General Public License version 3 or later; see license.txt</license>
@@ -9,21 +9,30 @@
 	<authorUrl>http://norrnext.com</authorUrl>
 	<version>1.0.0</version>
 	<description>PLG_CONTENT_JMB_DONATION_XML_DESCRIPTION</description>
+
+	<scriptfile>install.php</scriptfile>
+
 	<files>
 		<filename plugin="jmb_donation">jmb_donation.php</filename>
 		<folder>fields</folder>
 		<folder>layouts</folder>
 		<folder>language</folder>
 	</files>
+
 	<media destination="plg_jmb_donation" folder="media">
 		<folder>css</folder>
 		<folder>images</folder>
 		<folder>js</folder>
 	</media>
+
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="def_provider" type="list"
+
+				<field
+					name="def_provider"
+					type="list"
+					class="input-medium"
 					default="paypal"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_PROVIDER_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_PROVIDER_DESC">
@@ -31,85 +40,104 @@
 					<option value="yandex">Yandex</option>
 				</field>
 
-				<field name="def_merchant" type="text"
+				<field
+					name="def_merchant"
+					type="text"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_MERCHANT_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_MERCHANT_DESC"
 				/>
 
-				<field name="def_amount" type="text"
+				<field
+					name="def_amount"
+					type="text"
 					default="10"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_LABEL"
 				/>
-				
-				<field name="def_currency" type="text"
+
+				<field
+					name="def_currency"
+					type="text"
 					default="EUR"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_CURRENCY_DESC"
 				/>
-				
-				<field name="donation_text" type="textarea"
+
+				<field
+					name="donation_text"
+					type="textarea"
 					default=""
 					label="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_TEXT_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_TEXT_DESC"
 				/>
-				
+
 			</fieldset>
+
 			<fieldset name="advanced">
+
 				<field
-						name="show_logo"
-						type="radio"
-						class="btn-group btn-group-yesno"
-						default="1"
-						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_LABEL"
-						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_DESC">
+					name="show_logo"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_LOGO_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
 
 				<field
-						name="show_effects"
-						type="radio"
-						class="btn-group btn-group-yesno"
-						default="1"
-						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_LABEL"
-						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_DESC">
-					<option value="1">JYES</option>
-					<option value="0">JNO</option>
-				</field>
-				
-				<field name="show_image" type="media" directory="stories"
+					name="show_image"
+					type="media"
+					directory="stories"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_IMAGE"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_DONATION_IMAGE_DESC"
-					/>
-				
+				/>
+
 				<field
-						name="show_smile"
-						type="radio"
-						class="btn-group btn-group-yesno"
-						default="1"
-						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_LABEL"
-						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_DESC">
+					name="show_effects"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_EFFECTS_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
-				
-				<field name="smile_width" type="text"
+
+				<field
+					name="show_smile"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_SMILE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+					name="smile_width"
+					type="text"
 					default="100"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_WIDTH_DESC"
 				/>
 
-				<field name="smile_height" type="text"
+				<field
+					name="smile_height"
+					type="text"
 					default="100"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_LABEL"
 					description="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_HEIGHT_DESC"
 				/>
 
-				<field name="smile_colour" type="color"
+				<field
+					name="smile_colour"
+					type="color"
 					default="#75b732"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_SMILE_COLOUR_LABEL"
@@ -117,30 +145,32 @@
 				/>
 
 				<field
-						name="show_backlink"
-						type="radio"
-						class="btn-group btn-group-yesno"
-						default="1"
-						label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_LABEL"
-						description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_DESC">
+					name="show_backlink"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_SHOW_BACKLINK_DESC">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
 
 			</fieldset>
-			<fieldset name="jmb_donation_description"
-					  addfieldpath="/plugins/content/jmb_donation/fields">
+
+			<fieldset
+				name="jmb_donation_description"
+				addfieldpath="/plugins/content/jmb_donation/fields">
 
 				<field
-						name="description"
-						type="jmb.description"
-						label=""
-						/>
+					name="description"
+					type="jmb.description"
+					label=""
+				/>
 
 			</fieldset>
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="jmb_donation">http://norrnext.com/updates/joomla/plugins/jmb_donation_update.xml</server>
+		<server type="extension" priority="1" name="NorrNext updates server">http://norrnext.com/updates/joomla/plugins/jmb_donation_update.xml</server>
 	</updateservers>
 </extension>
