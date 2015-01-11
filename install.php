@@ -1,6 +1,6 @@
 <?php
 /**
- * @package    Jmb_Copy_Letters
+ * @package    Jmb_Donation
  * @author     Dmitry Rekun <support@norrnext.com>
  * @copyright  Copyright (C) 2011 - 2014 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
