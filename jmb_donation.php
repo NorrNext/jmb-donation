@@ -231,10 +231,15 @@ class PlgContentJmb_Donation extends JPlugin
 		JHtml::_('behavior.framework', 'more');
 
 		JHtml::stylesheet('plg_jmb_donation/slider.css', false, true);
-		JHtml::script('plg_jmb_donation/excanvas.js', false, true);
-		JHtml::script('plg_jmb_donation/smile.js', false, true);
 
 		$showSmile = $this->params->get('show_smile') && !$this->params->get('show_image') ? '1' : '0';
+
+		if ($showSmile)
+		{
+			JHtml::script('plg_jmb_donation/excanvas.js', false, true);
+			JHtml::script('plg_jmb_donation/smile.js', false, true);
+		}
+
 		$js = "
 		window.addEvent('domready', function(){
 			var showSmile = " . $showSmile . ";
