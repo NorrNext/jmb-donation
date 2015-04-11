@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<form class="jmb-donation-form-paypal uk-form form-inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+<form class="jmb-donation-form-paypal uk-form form-inline" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 	<?php if ($displayData->params->get('show_effects', 1)) : ?>
 		<?php echo JLayoutHelper::render('effects', $displayData); ?>
 	<?php endif; ?>
