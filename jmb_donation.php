@@ -95,7 +95,17 @@ class PlgContentJmb_Donation extends JPlugin
 		$displayData->token     = $this->token;
 		$displayData->params    = $this->params;
 
-		JLayoutHelper::$defaultBasePath = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
+		$template = JFactory::getApplication()->getTemplate();
+
+		$defaultLayoutsPath  = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
+		$templateLayoutsPath = JPATH_THEMES . '/' . $template . '/html/plg_' . $this->_type . '_' . $this->_name . '/layouts';
+
+		jimport('joomla.filesystem.folder');
+
+		JLayoutHelper::$defaultBasePath = JFolder::exists($templateLayoutsPath)
+			? $templateLayoutsPath
+			: $defaultLayoutsPath;
+
 		$renderedLayout = JLayoutHelper::render('base', $displayData);
 
 		if ($this->params->get('show_effects', 1))
