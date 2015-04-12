@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.2" type="plugin" group="content" method="upgrade">
+<extension version="3.4" type="plugin" group="content" method="upgrade">
 	<name>plg_content_jmb_donation</name>
 	<author>Lex, AllDar, D.Rekun and A.Valchuk</author>
 	<creationDate>2015-02-15</creationDate>
@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 3 or later; see license.txt</license>
 	<authorEmail>support@norrnext.com</authorEmail>
 	<authorUrl>http://www.norrnext.com</authorUrl>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>PLG_CONTENT_JMB_DONATION_XML_DESCRIPTION</description>
 
 	<scriptfile>install.php</scriptfile>
