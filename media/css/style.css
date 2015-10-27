@@ -25,11 +25,15 @@
 	margin-right: 20px;
 }
 .jmb-donation-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
     margin-right: 20px;
-    float: left;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 0;
+}
+form.jmb-donation-form-yandex,
+form.jmb-donation-form-paypal {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .jmb-donation-image img {
