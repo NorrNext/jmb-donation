@@ -54,19 +54,28 @@ form.jmb-donation-form-paypal {
     line-height: 26px;
     height: 30px;
     text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.25);
-	padding: 0 15px;
-    margin-right: 20px;
+    padding: 0 15px;
     font-size: 13px;
     border-radius: 3px;
     background: #a8d251;
-    background: -moz-linear-gradient(top,  #a8d251 0%, #75b732 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8d251), color-stop(100%,#75b732));
-    background: -webkit-linear-gradient(top,  #a8d251 0%,#75b732 100%);
-    background: -o-linear-gradient(top,  #a8d251 0%,#75b732 100%);
-    background: -ms-linear-gradient(top,  #a8d251 0%,#75b732 100%);
+    background: 
+    
+    -moz-linear-gradient(top,  #a8d251 0%, #75b732 100%);
+    background: 
+    
+    -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8d251), color-stop(100%,#75b732));
+    background: 
+    
+    -webkit-linear-gradient(top,  #a8d251 0%,#75b732 100%);
+    background: 
+    
+    -o-linear-gradient(top,  #a8d251 0%,#75b732 100%);
+    background: 
+    
+    -ms-linear-gradient(top,  #a8d251 0%,#75b732 100%);
     background: linear-gradient(to bottom,  #a8d251 0%,#75b732 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8d251', endColorstr='#75b732',GradientType=0 );
-	cursor: pointer;
+    cursor: pointer;
 }
 .jmb-donation-button:hover,
 .jmb-donation-button:focus{
@@ -99,10 +108,8 @@ form.jmb-donation-form-paypal {
 	margin-right: 5px;
 }
 a.jmb-donation-logo{
-	display: inline-block;
 	background: none;
 	font: 0/0 a;
-	margin-left: 15px;
 }
 a.jmb-donation-logo img {
 	max-width: 100%;
