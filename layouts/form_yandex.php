@@ -2,14 +2,14 @@
 /**
  * @package    Jmb_Donation
  * @author     Dmitry Rekun, Artem Valchuk, Lex, AllDar <support@norrnext.com>
- * @copyright  Copyright (C) 2012 - 2015 NorrNext. All rights reserved.
+ * @copyright  Copyright (C) 2012 - 2017 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
 
 defined('_JEXEC') or die;
 ?>
 
-<form class="jmb-donation-form-yandex uk-form form-inline" action="https://money.yandex.ru/charity.xml" method="post" target="_blank">
+<form class="jmb-donation-form-yandex uk-form form-inline" action="https://money.yandex.ru/charity.xml" method="post">
 	<?php if ($displayData->params->get('show_effects', 1)) : ?>
 		<?php echo JLayoutHelper::render('effects', $displayData); ?>
 	<?php endif; ?>

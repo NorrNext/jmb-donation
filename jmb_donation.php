@@ -2,7 +2,7 @@
 /**
  * @package    Jmb_Donation
  * @author     Lex, AllDar and Dmitry Rekun <support@norrnext.com>
- * @copyright  Copyright (C) 2012 - 2015 NorrNext. All rights reserved.
+ * @copyright  Copyright (C) 2012 - 2017 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
 
@@ -95,7 +95,17 @@ class PlgContentJmb_Donation extends JPlugin
 		$displayData->token     = $this->token;
 		$displayData->params    = $this->params;
 
-		JLayoutHelper::$defaultBasePath = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
+		$template = JFactory::getApplication()->getTemplate();
+
+		$defaultLayoutsPath  = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/layouts';
+		$templateLayoutsPath = JPATH_THEMES . '/' . $template . '/html/plg_' . $this->_type . '_' . $this->_name . '/layouts';
+
+		jimport('joomla.filesystem.folder');
+
+		JLayoutHelper::$defaultBasePath = JFolder::exists($templateLayoutsPath)
+			? $templateLayoutsPath
+			: $defaultLayoutsPath;
+
 		$renderedLayout = JLayoutHelper::render('base', $displayData);
 
 		if ($this->params->get('show_effects', 1))
@@ -221,30 +231,42 @@ class PlgContentJmb_Donation extends JPlugin
 		JHtml::_('behavior.framework', 'more');
 
 		JHtml::stylesheet('plg_jmb_donation/slider.css', false, true);
-		JHtml::script('plg_jmb_donation/excanvas.js', false, true);
-		JHtml::script('plg_jmb_donation/smile.js', false, true);
 
 		$showSmile = $this->params->get('show_smile') && !$this->params->get('show_image') ? '1' : '0';
+		$amount    = $this->params->get('amount', 10);
+		$minAmount = $this->params->get('amount_min', $amount / 10);
+		$maxAmount = $this->params->get('amount_max', $amount * 2);
+		$step      = $this->params->get('step', 5);
+
+		$steps = round(($maxAmount - $minAmount) / $step);
+
+		if ($showSmile)
+		{
+			JHtml::script('plg_jmb_donation/excanvas.js', false, true);
+			JHtml::script('plg_jmb_donation/smile.js', false, true);
+		}
+
 		$js = "
 		window.addEvent('domready', function(){
 			var showSmile = " . $showSmile . ";
-			var el = $('elslider" . $this->token . "');
-			var inp = $('amount" . $this->token . "');
-			var sum = ('" . $this->params->get('amount') . "');
+			var el = document.id('elslider" . $this->token . "');
+			var inp = document.id('amount" . $this->token . "');
+			var sum = " . $amount . ";
+			var max = " . $maxAmount . ";
 			if (showSmile) {
-				var elsmile = $('smile" . $this->token . "');
+				var elsmile = document.id('smile" . $this->token . "');
 			}
 
 			var slider" . $this->token . " = new Slider(el, el.getElement('.knob'), {
-				steps: sum*2,
+				steps: '" . $steps . "',
 				initialStep: sum,
-				range: [sum/10, sum*2],
+				range: [" . $minAmount . ", " . $maxAmount . "],
 				onChange: function(val){
 					inp.set('value', val);
-					var pr = (val/(sum*2))*100;
+					var pr = (val/max)*100;
 					if (showSmile) {
 						var sml = new Smile(
-							$('smile" . $this->token . "'), pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
+							elsmile, pr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
 						);
 					}
 				}
@@ -253,10 +275,13 @@ class PlgContentJmb_Donation extends JPlugin
 			inp.addEvent('keyup', function(event) {
 				event.stop();
 				var sm = inp.get('value');
-				var cpr = (sm/(sum*2))*100;
+				if (sm > max) {
+					sm = max;
+				}
+				var cpr = (sm/max)*100;
 				if (showSmile) {
 					new Smile(
-						$('smile" . $this->token . "'), cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
+						elsmile, cpr, elsmile.getWidth()/150, elsmile.getProperty('rel').toInt(), elsmile.getProperty('color')
 					);
 				}
 			});

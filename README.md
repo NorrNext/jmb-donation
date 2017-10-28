@@ -1,6 +1,6 @@
 JMB Donation
 ============
 
-JMB Donation - content plugin to collect donations through the payment system 'Yandex.Money'.
+JMB Donation plugin allows to collect donations using different payment providers.
 
-JMB Donation - контент-плагин для сбора пожертвований через платежную систему 'Яндекс.Деньги'. 
+JMB Donation - плагин JMB Donation позволяет собирать пожертвования через различные платежные системы.

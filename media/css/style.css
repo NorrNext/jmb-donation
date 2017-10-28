@@ -6,7 +6,9 @@
     border-radius: 4px;
 }
 .jmb-donation > form > *{
-	margin: 15px 0;
+  margin: 0 5px!important;
+  vertical-align: middle;
+  display: inline-block;
 }
 .jmb-donation-text {
     margin-bottom: 10px;
@@ -16,30 +18,34 @@
 .jmb-donation-input,
 .jmb-donation-slider,
 .jmb-donation-smile{
-	display: inline-block;
-	margin-bottom: 0;
-	vertical-align: middle;	
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
 }
 .jmb-donation-smile {
-	float: left;
-	margin-right: 20px;
+  float: left;
+  margin-right: 20px;
 }
 .jmb-donation-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
     margin-right: 20px;
-    float: left;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 0;
+}
+form.jmb-donation-form-yandex,
+form.jmb-donation-form-paypal {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .jmb-donation-image img {
     border-radius: 100%;
 }
 .jmb-donation .jmb-donation-input {
-	width: 40px;
-	text-align: center;
-	margin-right: 15px;
-	margin-top: 0
+  width: 40px;
+  text-align: center;
+  margin-right: 15px;
+  margin-top: 0
 }
 .jmb-donation-button {
     color: #fff;
@@ -48,87 +54,83 @@
     line-height: 26px;
     height: 30px;
     text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.25);
-	padding: 0 15px;
-    margin-right: 20px;
+    padding: 0 15px;
     font-size: 13px;
     border-radius: 3px;
     background: #a8d251;
     background: -moz-linear-gradient(top,  #a8d251 0%, #75b732 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8d251), color-stop(100%,#75b732));
     background: -webkit-linear-gradient(top,  #a8d251 0%,#75b732 100%);
-    background: -o-linear-gradient(top,  #a8d251 0%,#75b732 100%);
-    background: -ms-linear-gradient(top,  #a8d251 0%,#75b732 100%);
+    background:-o-linear-gradient(top,  #a8d251 0%,#75b732 100%);
+    background:-ms-linear-gradient(top,  #a8d251 0%,#75b732 100%);
     background: linear-gradient(to bottom,  #a8d251 0%,#75b732 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8d251', endColorstr='#75b732',GradientType=0 );
-	cursor: pointer;
+    cursor: pointer;
 }
 .jmb-donation-button:hover,
 .jmb-donation-button:focus{
     border: 1px solid rgba(0, 0, 0, 0.1);
-	box-shadow: inset 0px 1px 0 0px rgba(255, 255, 255, 0.33), 0px 0px 2px 1px rgba(0, 0, 0, 0.12);
-	background: #75b732;
-	background: -moz-linear-gradient(top,  #75b732 0%, #a8d251 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#75b732), color-stop(100%,#a8d251));
-	background: -webkit-linear-gradient(top,  #75b732 0%,#a8d251 100%);
-	background: -o-linear-gradient(top,  #75b732 0%,#a8d251 100%);
-	background: -ms-linear-gradient(top,  #75b732 0%,#a8d251 100%);
-	background: linear-gradient(to bottom,  #75b732 0%,#a8d251 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#75b732', endColorstr='#a8d251',GradientType=0 );
+  box-shadow: inset 0px 1px 0 0px rgba(255, 255, 255, 0.33), 0px 0px 2px 1px rgba(0, 0, 0, 0.12);
+  background: #75b732;
+  background: -moz-linear-gradient(top,  #75b732 0%, #a8d251 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#75b732), color-stop(100%,#a8d251));
+  background: -webkit-linear-gradient(top,  #75b732 0%,#a8d251 100%);
+  background: -o-linear-gradient(top,  #75b732 0%,#a8d251 100%);
+  background: -ms-linear-gradient(top,  #75b732 0%,#a8d251 100%);
+  background: linear-gradient(to bottom,  #75b732 0%,#a8d251 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#75b732', endColorstr='#a8d251',GradientType=0 );
 }
 
 .jmb-donation-button:active {
-	background: #6AA92A;
-	box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 0px 0px #fff;
+  background: #6AA92A;
+  box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 0px 0px #fff;
 }
 .jmb-donation-button:before {
-	content: '';
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	margin: 0;
-	font-size: 100%;
-	vertical-align: middle;
-	background: url(../images/icon.png) 0 0 no-repeat;
-	margin-left: -5px;
-	margin-right: 5px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+  background: url(../images/icon.png) 0 0 no-repeat;
+  margin-left: -5px;
+  margin-right: 5px;
 }
 a.jmb-donation-logo{
-	display: inline-block;
-	background: none;
-	font: 0/0 a;
-	margin-left: 15px;
+  background: none;
+  font: 0/0 a;
 }
 a.jmb-donation-logo img {
-	max-width: 100%;
-	width: auto \9;
-	height: auto;
-	vertical-align: middle;
-	border: 0;
-	-ms-interpolation-mode: bicubic;
+  max-width: 100%;
+  width: auto \9;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
 }
-
 /* Mobile */
-
 @media (max-width: 767px) {
-
-	.jmb-donation-smile,
-	.jmb-donation-image	{
-		float: none;
-		margin: 0 0 10px 0;
-		display: inline-block;
-	}
-
-	.jmb-donation {
-		text-align: center;
-	}
-
-	.jmb-donation .jmb-donation-slider {
-		margin-bottom: 20px;
-		width:100%
-	}
-
-	a.jmb-donation-logo {
-		margin-top: 20px;
-		display: block;
-	}
+  .jmb-donation-smile,
+  .jmb-donation-image  {
+    float: none;
+    margin: 0 0 10px 0;
+    display: inline-block;
+  }
+  .jmb-donation > form > *{
+    margin: 10px 5px!important;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .jmb-donation {
+    text-align: center;
+  }
+  .jmb-donation .jmb-donation-slider {
+    margin-bottom: 20px;
+    width:100%
+  }
+  a.jmb-donation-logo {
+    margin-top: 20px;
+    display: block;
+  }
 }
