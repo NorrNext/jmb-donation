@@ -275,7 +275,7 @@ class PlgContentJmb_Donation extends JPlugin
 			inp.addEvent('keyup', function(event) {
 				event.stop();
 				var sm = inp.get('value');
-				if (max > sm) {
+				if (sm > max) {
 					sm = max;
 				}
 				var cpr = (sm/max)*100;
