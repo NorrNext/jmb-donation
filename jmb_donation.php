@@ -2,7 +2,7 @@
 /**
  * @package    Jmb_Donation
  * @author     Lex, AllDar and Dmitry Rekun <support@norrnext.com>
- * @copyright  Copyright (C) 2012 - 2015 NorrNext. All rights reserved.
+ * @copyright  Copyright (C) 2012 - 2017 NorrNext. All rights reserved.
  * @license    GNU General Public License version 3 or later; see license.txt
  */
 
