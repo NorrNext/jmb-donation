@@ -238,7 +238,7 @@ class PlgContentJmb_Donation extends JPlugin
 		$maxAmount = $this->params->get('amount_max', $amount * 2);
 		$step      = $this->params->get('step', 5);
 
-		$steps = ($maxAmount - $minAmount) / $step;
+		$steps = round(($maxAmount - $minAmount) / $step);
 
 		if ($showSmile)
 		{
