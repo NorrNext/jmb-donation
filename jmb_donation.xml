@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.4" type="plugin" group="content" method="upgrade">
 	<name>plg_content_jmb_donation</name>
-	<author>Lex, AllDar, D.Rekun and A.Valchuk</author>
-	<creationDate>2015-05-19</creationDate>
+	<author>Dmitry Rekun</author>
+	<creationDate>28/10/2017</creationDate>
 	<copyright>(c) 2012 - 2017 NorrNext</copyright>
 	<license>GNU General Public License version 3 or later; see license.txt</license>
 	<authorEmail>support@norrnext.com</authorEmail>
 	<authorUrl>http://www.norrnext.com</authorUrl>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>PLG_CONTENT_JMB_DONATION_XML_DESCRIPTION</description>
 
 	<scriptfile>install.php</scriptfile>
@@ -203,6 +203,8 @@
 		<server
 			type="extension"
 			priority="1"
-			name="NorrNext Update Site">https://www.norrnext.com/updates/joomla/plugins/jmb_donation_update.xml</server>
+			name="NorrNext Update Site">
+			https://norrnext.com/index.php?option=com_rdsubs&amp;view=updater&amp;cat=34&amp;type=3&amp;element=jmb_donation&amp;format=xml
+		</server>
 	</updateservers>
 </extension>
