@@ -251,8 +251,8 @@ class PlgContentJmb_Donation extends JPlugin
 			var showSmile = " . $showSmile . ";
 			var el = document.id('elslider" . $this->token . "');
 			var inp = document.id('amount" . $this->token . "');
-			var sum = '" . $amount . "';
-			var max = '" . $maxAmount . "';
+			var sum = " . $amount . ";
+			var max = " . $maxAmount . ";
 			if (showSmile) {
 				var elsmile = document.id('smile" . $this->token . "');
 			}

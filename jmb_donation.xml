@@ -53,6 +53,33 @@
 					default="10"
 					class="input-mini"
 					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_DESC"
+				/>
+
+				<field
+					name="amount_min"
+					default="1"
+					type="text"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_MIN_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_MIN_DESC"
+				/>
+
+				<field
+					name="amount_max"
+					default="20"
+					type="text"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_MAX_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_AMOUNT_MAX_DESC"
+				/>
+
+				<field
+					name="step"
+					type="text"
+					class="input-mini"
+					label="PLG_CONTENT_JMB_DONATION_FIELD_STEP_LABEL"
+					description="PLG_CONTENT_JMB_DONATION_FIELD_STEP_DESC"
 				/>
 
 				<field
